@@ -1,0 +1,107 @@
+.header {
+  background: #db6f17;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ff9900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.header a:hover {
+  background: #ff0000;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px; /* Adjust the radius as needed */
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ff6600;
+  padding: 0.5rem 1rem;
+}
+
+.header ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header ul li {
+  display: flex;
+  align-items: center;
+}
+
+.header ul a {
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  transition: background 0.3s, color 0.3s;
+}
+
+.greeting {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+
+.menu_container {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1001;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+}
+
+.menu_container:hover .menu {
+  display: flex;
+}
+
+.menu a {
+  width: 100%;
+  min-width: 8rem;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.cart_link {
+  display: flex;
+  align-items: center;
+}
+
+.navList li {
+  margin-left: 1rem;
+}
+
+.navList a {
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  transition: background 0.3s, color 0.3s;
+}
+
+.cart_count {
+  background-color: #ff3300;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tag {
+  background-color: #e0f7fa;
+  padding: 0.5rem 1rem;
+  margin: 0.2rem 0.15rem;
+  border-radius: 10rem;
+  font-weight: 600;
+  color: #00796b;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tag:hover {
+  background-color: #004d40;
+  color: #ffffff;
+}
