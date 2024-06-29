@@ -26,12 +26,21 @@ export const getAllStatus = async () => {
   const { data } = await axios.get(`/api/orders/allstatus`);
   return data;
 };
-// cancel order make order status to cancelled
+//create cancel order which changes status of existing order to cancelled
 export const cancelOrder = async (orderId) => {
   try {
-    const { data } = await axios.put("/api/orders/cancel", { orderId });
-    return data;
+    const { data } = await axios.put(`/api/orders/cancel/${orderId}`);
+    return data; // Assuming the server responds with the updated order data
   } catch (error) {
-    console.error("Error canceling order:", error);
+    throw error; // Rethrow the error to be caught by the caller
+  }
+};
+
+export const acceptOrder = async (orderId) => {
+  try {
+    const { data } = await axios.put(`/api/orders/accept/${orderId}`);
+    return data; // Assuming the server responds with the updated order data
+  } catch (error) {
+    throw error; // Rethrow the error to be caught by the caller
   }
 };

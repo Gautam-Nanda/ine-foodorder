@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { trackOrderById, cancelOrder } from '../../services/orderService';
+import { trackOrderById, cancelOrder, acceptOrder } from '../../services/orderService';
 import NotFound from '../../components/NotFound/NotFound';
 import classes from './orderTrackPage.module.css';
 import DateTime from '../../components/DateTime/DateTime';
@@ -22,6 +22,7 @@ export default function OrderTrackPage() {
   }, []);
 
   const handleCancelOrder = async () => {
+
     try {
       const updatedOrder = await cancelOrder(orderId);
       setOrder(updatedOrder);
@@ -29,7 +30,19 @@ export default function OrderTrackPage() {
     } catch (error) {
       console.error('Error canceling order:', error);
     }
+    
+
   };
+
+    const handleAcceptOrder = async () => {
+      try {
+        const updatedOrder = await acceptOrder(orderId);
+        setOrder(updatedOrder);
+        console.log('Order accepted successfully');
+      } catch (error) {
+        console.error('Error accepting order:', error);
+      }
+    }
 
   if (!orderId)
     return <NotFound message="Order Not Found" linkText="Go To Home Page" />;
@@ -56,12 +69,7 @@ export default function OrderTrackPage() {
               <strong>State</strong>
               {order.status}
             </div>
-            {order.paymentId && (
-              <div>
-                <strong>Payment ID</strong>
-                {order.paymentId}
-              </div>
-            )}
+            
           </div>
 
           <OrderItemsList order={order} />
@@ -71,9 +79,11 @@ export default function OrderTrackPage() {
 
         {user.isAdmin && order.status !== OrderStatus.CANCELED && (
           <div className={classes.cancelOrder}>
+            <button onClick={handleAcceptOrder}>Accept Order</button>
             <button onClick={handleCancelOrder}>Cancel Order</button>
           </div>
         )}
+        
       </div>
     )
   );

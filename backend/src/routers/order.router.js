@@ -80,6 +80,53 @@ router.get(
   })
 );
 
+router.put(
+  '/cancel/:orderId',
+  handler(async (req, res) => {
+    const { orderId } = req.params;
+    const user = await UserModel.findById(req.user.id);
+
+    const filter = { _id: orderId };
+    if (!user.isAdmin) {
+      filter.user = user._id; // Ensure that non-admin users can only cancel their own orders
+    }
+
+    const order = await OrderModel.findOne(filter);
+
+    if (!order) {
+      return res.status(BAD_REQUEST).send('Order not found or you do not have permission to cancel this order.');
+    }
+
+    // Update the order status to 'cancelled'
+    order.status = OrderStatus.CANCELED;
+    await order.save();
+
+    res.send(order);
+  })
+);
+
+router.put(
+  '/accept/:orderId',
+  handler(async (req, res) => {
+    const { orderId } = req.params;
+    const user = await UserModel.findById(req.user.id);
+    const filter = { _id: orderId };
+    if (!user.isAdmin) {
+      filter.user = user._id; // Ensure that non-admin users can only accept their own orders
+    }
+    const order = await OrderModel.findOne(filter);
+    if (!order) {
+      return res.status(BAD_REQUEST).send('Order not found or you do not have permission to accept this order.');
+    }
+    // Update the order status to 'accepted'
+    order.status = OrderStatus.ACCEPTED;
+    await order.save();
+    res.send(order);
+
+  })
+  );
+
+
 const getNewOrderForCurrentUser = async req =>
   await OrderModel.findOne({
     user: req.user.id,
