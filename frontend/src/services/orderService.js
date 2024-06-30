@@ -1,14 +1,14 @@
 import axios from "axios";
 
-export const createOrder = async (order) => {
+export const createOrder = async order => {
   try {
-    const { data } = axios.post("/api/orders/create", order);
+    const { data } = axios.post('/api/orders/create', order);
     return data;
   } catch (error) {}
 };
 
 export const getNewOrderForCurrentUser = async () => {
-  const { data } = await axios.get("/api/orders/newOrderForCurrentUser");
+  const { data } = await axios.get('/api/orders/newOrderForCurrentUser');
   return data;
 };
 
@@ -26,21 +26,21 @@ export const getAllStatus = async () => {
   const { data } = await axios.get(`/api/orders/allstatus`);
   return data;
 };
-//create cancel order which changes status of existing order to cancelled
+
 export const cancelOrder = async (orderId) => {
   try {
     const { data } = await axios.put(`/api/orders/cancel/${orderId}`);
-    return data; // Assuming the server responds with the updated order data
+    return data; 
   } catch (error) {
-    throw error; // Rethrow the error to be caught by the caller
+    throw error;
   }
 };
 
 export const acceptOrder = async (orderId) => {
   try {
     const { data } = await axios.put(`/api/orders/accept/${orderId}`);
-    return data; // Assuming the server responds with the updated order data
+    return data; 
   } catch (error) {
-    throw error; // Rethrow the error to be caught by the caller
+    throw error;
   }
 };

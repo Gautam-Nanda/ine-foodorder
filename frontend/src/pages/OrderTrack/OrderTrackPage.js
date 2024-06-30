@@ -62,7 +62,7 @@ export default function OrderTrackPage() {
               {order.name}
             </div>
             <div>
-              <strong>Address</strong>
+              <strong>Table No.</strong>
               {order.address}
             </div>
             <div>
@@ -77,7 +77,7 @@ export default function OrderTrackPage() {
 
 
 
-        {user.isAdmin && order.status !== OrderStatus.CANCELED && (
+        {user.isAdmin && order.status !== OrderStatus.CANCELED && order.status !== OrderStatus.ACCEPTED && (
           <div className={classes.cancelOrder}>
             <button onClick={handleAcceptOrder}>Accept Order</button>
             <button onClick={handleCancelOrder}>Cancel Order</button>

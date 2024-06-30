@@ -43,7 +43,7 @@ export default function CheckoutPage() {
             />
             <Input
               defaultValue={user.address}
-              label="Address"
+              label="Room No."
               {...register('address')}
               error={errors.address}
             />
